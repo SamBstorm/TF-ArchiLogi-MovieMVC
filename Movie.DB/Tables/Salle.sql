@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Salle]
+(
+	[Id] INT IDENTITY,
+	[Nom] NVARCHAR(50) NOT NULL,
+
+	CONSTRAINT PK_Salle PRIMARY KEY([Id]),
+	CONSTRAINT UK_Salle_Nom UNIQUE([Nom])
+)
