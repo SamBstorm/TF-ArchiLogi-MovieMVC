@@ -13,11 +13,15 @@ namespace Movie.Domain.Entities
 		public DateTime DateSortie { get; set; }
 
 		public Film() { }
-		public Film(int id, string titre, DateTime dateSortie)
+		public Film(int id, string titre, DateTime dateSortie) : this (titre, dateSortie)
 		{
 			Id = id;
-			Titre = titre;
-			DateSortie = dateSortie;
 		}
-	}
+
+        public Film(string titre, DateTime dateSortie)
+        {
+            Titre = titre;
+            DateSortie = dateSortie;
+        }
+    }
 }

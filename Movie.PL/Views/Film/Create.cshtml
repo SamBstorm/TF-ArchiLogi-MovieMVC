@@ -1,0 +1,17 @@
+﻿@model FilmCreateForm
+
+<form method="post">
+    <div>
+        <label class="form-label" asp-for="Titre"></label>
+        <input class="form-control" asp-for="Titre"/>
+        <span class="text-danger" asp-validation-for="Titre"></span>
+    </div>
+    <div>
+        <label class="form-label" asp-for="DateSortie"></label>
+        <input class="form-control" asp-for="DateSortie"/>
+        <span class="text-danger" asp-validation-for="DateSortie"></span>
+    </div>
+    <div>
+        <input class="btn btn-outline-success" type="submit" value="Enregistrer"/>
+    </div>
+</form>

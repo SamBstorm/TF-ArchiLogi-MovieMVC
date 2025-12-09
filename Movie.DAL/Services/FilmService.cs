@@ -17,8 +17,29 @@ namespace Movie.DAL.Services
 
 		int IFilmRepository.Create(Film film)
 		{
-			throw new NotImplementedException();
-		}
+            using (DbCommand command = _connection.CreateCommand())
+            {
+				command.CommandText = $"INSERT INTO [Film]([Titre], [DateSortie]) OUTPUT [inserted].[Id] VALUES (@{nameof(film.Titre)}, @{nameof(film.DateSortie)})";
+
+				DbParameter param_titre = command.CreateParameter();
+				param_titre.ParameterName = nameof(film.Titre);
+				param_titre.Value = film.Titre;
+
+                DbParameter param_date = command.CreateParameter();
+                param_date.ParameterName = nameof(film.DateSortie);
+                param_date.Value = film.DateSortie;
+
+				command.Parameters.Add(param_titre);
+				command.Parameters.Add(param_date);
+
+				_connection.Open();
+
+				film.Id = (int?)command.ExecuteScalar() ?? throw new InvalidOperationException();
+
+				_connection.Close();
+            }
+			return film.Id;
+        }
 
 		bool IFilmRepository.Delete(int id)
 		{

@@ -13,7 +13,7 @@ namespace Movie.BLL.Services
 		}
 		int IFilmRepository.Create(Film film)
 		{
-			throw new NotImplementedException();
+			return _filmRepository.Create(film);
 		}
 
 		bool IFilmRepository.Delete(int id)
